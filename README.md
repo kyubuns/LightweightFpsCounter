@@ -1,0 +1,56 @@
+# LightweightFpsCounter
+
+**A simple, fast FPS counter for Unity.**
+
+A minimal FPS counter for the Universal Render Pipeline (URP), built with an obsessive focus on low runtime overhead.
+
+[日本語版 README はこちら](README.ja.md)
+
+<img width="324" height="160" alt="LightweightFpsCounter" src="https://github.com/user-attachments/assets/aa9b98e1-b171-4b80-800f-daebe52344a3" />
+
+`NOW` is the latest sample; `AVG` is a 1-second average.
+
+## Features
+
+- Shows FPS plus CPU total / main thread / present wait / render thread / GPU frame times, measured by `FrameTimingManager`.
+- Each metric can be shown or hidden, and every label is freely editable.
+- Values can change to warning/error colors, e.g. when FPS drops below or a frame time rises above your thresholds.
+- Refresh interval, text scale, screen-corner anchor, margin and colors are all adjustable.
+- The bitmap font can be replaced with your own atlas of any glyph / cell dimensions.
+- Metrics are also readable from code via static properties such as `LightweightFpsCounterHud.LatestFps`.
+- Zero GC allocations at runtime.
+
+## Requirements
+
+- Unity 6.3 or newer. Built for the Universal Render Pipeline (URP), though it contains no pipeline-specific code.
+- "Frame Timing Stats" enabled in Player Settings, otherwise all values read `0`.
+- Some timings are unavailable on some platforms; see the [FrameTimingManager documentation](https://docs.unity3d.com/ScriptReference/FrameTimingManager.html) for details.
+
+## Installation
+
+1. In the Package Manager, choose *Install package from git URL...* and enter `https://github.com/kyubuns/LightweightFpsCounter.git?path=Assets/LightweightFpsCounter`.
+2. Place the bundled **LightweightFpsCounterHud** prefab in your first scene.
+
+## Release builds
+
+The implementation is compiled only in the editor and Development Builds; non-development builds contain empty stubs and none of the assets.
+Define `FPS_COUNTER_ENABLE_IN_RELEASE` if you intentionally want the counter in release builds.
+
+## How it stays fast
+
+- A static mesh (header, labels, `ms`) is rebuilt only when settings change; a dynamic mesh holds fixed-width digit slots.
+- A refresh rewrites only the dynamic mesh's UVs and uploads them with validation-skipping `MeshUpdateFlags`.
+- Vertex colors are re-uploaded only when a value crosses a threshold.
+- Drawing is just two `DrawMeshNow` calls at the end of the frame, with no pipeline hooks, no culling and no sorting.
+- The vertex shader maps pixel coordinates straight to clip space, so anchoring costs nothing on the CPU.
+
+## Font
+
+The bundled font is [monogram](https://datagoblin.itch.io/monogram) by datagoblin (`Monogram.png`, CC0).
+Any bitmap atlas holding ASCII 32..126 works: adjust **Glyph Size**, **Cell Size**, **Atlas Origin**, **Atlas Columns**, **Letter Spacing** and **Line Height** to match your texture.
+Import custom atlases with Point filtering, no compression, no mipmaps and Non-Power of 2 set to None.
+
+## Credits
+
+- Code generated with Claude Fable 5 and ChatGPT 5.6.
+- Font: [monogram](https://datagoblin.itch.io/monogram) by datagoblin (CC0).

@@ -1,0 +1,89 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2527867956602244563
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 18832560434083156}
+  - component: {fileID: 1244373084657008661}
+  m_Layer: 0
+  m_Name: LightweightFpsCounterHud
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &18832560434083156
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2527867956602244563}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1244373084657008661
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2527867956602244563}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e70f7158acd03409195cc6f2d79af13a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: LightweightFpsCounter::LightweightFpsCounter.LightweightFpsCounterHud
+  showCpuTotalFrameTime: 1
+  showCpuMainThreadFrameTime: 1
+  showCpuMainThreadPresentWaitTime: 1
+  showCpuRenderThreadFrameTime: 1
+  showGpuFrameTime: 1
+  nowHeaderLabel: NOW
+  avgHeaderLabel: AVG
+  fpsLabel: FPS
+  cpuTotalLabel: CPU
+  cpuMainThreadLabel: ' Main'
+  cpuPresentWaitLabel: ' Wait'
+  cpuRenderThreadLabel: ' Render'
+  gpuLabel: GPU
+  updateIntervalMs: 100
+  textScale: 2
+  anchor: 0
+  screenMargin: {x: 8, y: 8}
+  textColor: {r: 1, g: 1, b: 1, a: 1}
+  backgroundColor: {r: 0, g: 0, b: 0, a: 0.5}
+  backgroundPadding: 6
+  integerDigits: 3
+  warningColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+  errorColor: {r: 1, g: 0, b: 0, a: 1}
+  fpsWarningBelow: 30
+  fpsErrorBelow: 20
+  cpuTotalWarningAboveMs: 16.8
+  cpuTotalErrorAboveMs: 33.4
+  cpuMainThreadWarningAboveMs: 16.8
+  cpuMainThreadErrorAboveMs: 33.4
+  cpuPresentWaitWarningAboveMs: 0
+  cpuPresentWaitErrorAboveMs: 0
+  cpuRenderThreadWarningAboveMs: 16.8
+  cpuRenderThreadErrorAboveMs: 33.4
+  gpuWarningAboveMs: 16.8
+  gpuErrorAboveMs: 33.4
+  fontTexture: {fileID: 2800000, guid: 73ce70ac12c6d4de19d7292003bbb582, type: 3}
+  overlayShader: {fileID: 4800000, guid: 306a06aa2e8134bacb0a8016ef2cfc39, type: 3}
+  glyphSize: {x: 5, y: 9}
+  cellSize: {x: 6, y: 10}
+  atlasOrigin: {x: 0, y: 0}
+  atlasColumns: 16
+  letterSpacing: 1
+  lineHeight: 10

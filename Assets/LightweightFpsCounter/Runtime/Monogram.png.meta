@@ -1,0 +1,2067 @@
+fileFormatVersion: 2
+guid: 73ce70ac12c6d4de19d7292003bbb582
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -1073505760137980797
+    second: MonogramAscii_0
+  - first:
+      213: 8355356122615691606
+    second: MonogramAscii_1
+  - first:
+      213: 6256558432844875351
+    second: MonogramAscii_2
+  - first:
+      213: 2211074863914290690
+    second: MonogramAscii_3
+  - first:
+      213: 5639261111388199593
+    second: MonogramAscii_4
+  - first:
+      213: 6714158402202212623
+    second: MonogramAscii_5
+  - first:
+      213: 7671835374782097412
+    second: MonogramAscii_6
+  - first:
+      213: 7962320699030190004
+    second: MonogramAscii_7
+  - first:
+      213: 4712375682098305530
+    second: MonogramAscii_8
+  - first:
+      213: 3558477045110216973
+    second: MonogramAscii_9
+  - first:
+      213: 7985833663349079431
+    second: MonogramAscii_10
+  - first:
+      213: -1856454583355533996
+    second: MonogramAscii_11
+  - first:
+      213: -3824071626770516906
+    second: MonogramAscii_12
+  - first:
+      213: -6667249805860560881
+    second: MonogramAscii_13
+  - first:
+      213: 3411606600587969266
+    second: MonogramAscii_14
+  - first:
+      213: 1834350305960988690
+    second: MonogramAscii_15
+  - first:
+      213: 5241727668329406629
+    second: MonogramAscii_16
+  - first:
+      213: 707053359414946790
+    second: MonogramAscii_17
+  - first:
+      213: 3408759332962060938
+    second: MonogramAscii_18
+  - first:
+      213: -7531341208485211464
+    second: MonogramAscii_19
+  - first:
+      213: -1267029710763610155
+    second: MonogramAscii_20
+  - first:
+      213: -7168486284838705388
+    second: MonogramAscii_21
+  - first:
+      213: 699680009537659667
+    second: MonogramAscii_22
+  - first:
+      213: -7029188406670760717
+    second: MonogramAscii_23
+  - first:
+      213: 6071271884100257918
+    second: MonogramAscii_24
+  - first:
+      213: 2293794198972404597
+    second: MonogramAscii_25
+  - first:
+      213: -229096528076398359
+    second: MonogramAscii_26
+  - first:
+      213: 8445377989168942415
+    second: MonogramAscii_27
+  - first:
+      213: -1859302677144220970
+    second: MonogramAscii_28
+  - first:
+      213: -382553987012592699
+    second: MonogramAscii_29
+  - first:
+      213: 65948685502791873
+    second: MonogramAscii_30
+  - first:
+      213: -6101484979640821793
+    second: MonogramAscii_31
+  - first:
+      213: -6149067860578429272
+    second: MonogramAscii_32
+  - first:
+      213: 7858750980505776090
+    second: MonogramAscii_33
+  - first:
+      213: -1300917541426991006
+    second: MonogramAscii_34
+  - first:
+      213: -738424587578286082
+    second: MonogramAscii_35
+  - first:
+      213: 7280508198065622186
+    second: MonogramAscii_36
+  - first:
+      213: 5418503474674915161
+    second: MonogramAscii_37
+  - first:
+      213: -1175242298349653358
+    second: MonogramAscii_38
+  - first:
+      213: -7376120452919465529
+    second: MonogramAscii_39
+  - first:
+      213: -1815608495161062655
+    second: MonogramAscii_40
+  - first:
+      213: -3576088707664458198
+    second: MonogramAscii_41
+  - first:
+      213: 2425100815764258503
+    second: MonogramAscii_42
+  - first:
+      213: -8900949283982652528
+    second: MonogramAscii_43
+  - first:
+      213: -6176487391607616952
+    second: MonogramAscii_44
+  - first:
+      213: 3648162800731842188
+    second: MonogramAscii_45
+  - first:
+      213: -1038402503695265146
+    second: MonogramAscii_46
+  - first:
+      213: 6980493406207148120
+    second: MonogramAscii_47
+  - first:
+      213: -2033493351257596929
+    second: MonogramAscii_48
+  - first:
+      213: -5532375516739617881
+    second: MonogramAscii_49
+  - first:
+      213: -4362611156539475346
+    second: MonogramAscii_50
+  - first:
+      213: 1551154158189550062
+    second: MonogramAscii_51
+  - first:
+      213: 1807253900992785390
+    second: MonogramAscii_52
+  - first:
+      213: 1242479746463866827
+    second: MonogramAscii_53
+  - first:
+      213: -5920403106355155979
+    second: MonogramAscii_54
+  - first:
+      213: 4983796565599723233
+    second: MonogramAscii_55
+  - first:
+      213: 6006794285864978887
+    second: MonogramAscii_56
+  - first:
+      213: -5121077059556694329
+    second: MonogramAscii_57
+  - first:
+      213: 8708995267434055530
+    second: MonogramAscii_58
+  - first:
+      213: -3786998190707577112
+    second: MonogramAscii_59
+  - first:
+      213: 309978959541474045
+    second: MonogramAscii_60
+  - first:
+      213: 1097148331062506639
+    second: MonogramAscii_61
+  - first:
+      213: -6690219108992793597
+    second: MonogramAscii_62
+  - first:
+      213: 706729857791819500
+    second: MonogramAscii_63
+  - first:
+      213: 8707445696332238665
+    second: MonogramAscii_64
+  - first:
+      213: 885673996107805221
+    second: MonogramAscii_65
+  - first:
+      213: -6102971698925995908
+    second: MonogramAscii_66
+  - first:
+      213: 1979719764918990456
+    second: MonogramAscii_67
+  - first:
+      213: -6237237539336255239
+    second: MonogramAscii_68
+  - first:
+      213: -798998482949204678
+    second: MonogramAscii_69
+  - first:
+      213: -3665111531201375845
+    second: MonogramAscii_70
+  - first:
+      213: 4318882874140866493
+    second: MonogramAscii_71
+  - first:
+      213: -7195853351194918797
+    second: MonogramAscii_72
+  - first:
+      213: -3403137176801095525
+    second: MonogramAscii_73
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 1
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 0
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: iOS
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: MonogramAscii_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 45
+        width: 7
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 384d3a6e2342a11f0800000000000000
+      internalID: -1073505760137980797
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MonogramAscii_1
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 45
+        width: 7
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 659b46cff1034f370800000000000000
+      internalID: 8355356122615691606
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MonogramAscii_2
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 55
+        width: 17
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 756813afeb2c3d650800000000000000
+      internalID: 6256558432844875351
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MonogramAscii_3
+      rect:
+        serializedVersion: 2
+        x: 12
+        y: 45
+        width: 7
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 20e086bbfd05fae10800000000000000
+      internalID: 2211074863914290690
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MonogramAscii_4
+      rect:
+        serializedVersion: 2
+        x: 18
+        y: 45
+        width: 7
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9aad7fb4a1ea24e40800000000000000
+      internalID: 5639261111388199593
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MonogramAscii_5
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 55
+        width: 7
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f0997f06e7b7d2d50800000000000000
+      internalID: 6714158402202212623
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MonogramAscii_6
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 45
+        width: 7
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 408a92150a5d77a60800000000000000
+      internalID: 7671835374782097412
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MonogramAscii_7
+      rect:
+        serializedVersion: 2
+        x: 30
+        y: 55
+        width: 7
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4b73f655d78df7e60800000000000000
+      internalID: 7962320699030190004
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MonogramAscii_8
+      rect:
+        serializedVersion: 2
+        x: 30
+        y: 45
+        width: 7
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: af998a337b8b56140800000000000000
+      internalID: 4712375682098305530
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MonogramAscii_9
+      rect:
+        serializedVersion: 2
+        x: 36
+        y: 55
+        width: 11
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d091d27d400426130800000000000000
+      internalID: 3558477045110216973
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MonogramAscii_10
+      rect:
+        serializedVersion: 2
+        x: 36
+        y: 45
+        width: 7
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 78d3743f76163de60800000000000000
+      internalID: 7985833663349079431
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MonogramAscii_11
+      rect:
+        serializedVersion: 2
+        x: 42
+        y: 45
+        width: 7
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4559271746c8c36e0800000000000000
+      internalID: -1856454583355533996
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MonogramAscii_12
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 45
+        width: 7
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 65471b2cd1b2eeac0800000000000000
+      internalID: -3824071626770516906
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MonogramAscii_13
+      rect:
+        serializedVersion: 2
+        x: 50
+        y: 45
+        width: 15
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f00a3ec40ab2973a0800000000000000
+      internalID: -6667249805860560881
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MonogramAscii_14
+      rect:
+        serializedVersion: 2
+        x: 60
+        y: 56
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2f28c65b026785f20800000000000000
+      internalID: 3411606600587969266
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MonogramAscii_15
+      rect:
+        serializedVersion: 2
+        x: 66
+        y: 54
+        width: 11
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2101f6c62ebe47910800000000000000
+      internalID: 1834350305960988690
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MonogramAscii_16
+      rect:
+        serializedVersion: 2
+        x: 78
+        y: 55
+        width: 19
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5a06c10ea8b5eb840800000000000000
+      internalID: 5241727668329406629
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MonogramAscii_17
+      rect:
+        serializedVersion: 2
+        x: 90
+        y: 45
+        width: 7
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6ebac25c845ffc900800000000000000
+      internalID: 707053359414946790
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MonogramAscii_18
+      rect:
+        serializedVersion: 2
+        x: 67
+        y: 44
+        width: 18
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a8a400e8d885e4f20800000000000000
+      internalID: 3408759332962060938
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MonogramAscii_19
+      rect:
+        serializedVersion: 2
+        x: 84
+        y: 46
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8b25af9d21d4b7790800000000000000
+      internalID: -7531341208485211464
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MonogramAscii_20
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 35
+        width: 7
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5dfa11ae03b9a6ee0800000000000000
+      internalID: -1267029710763610155
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MonogramAscii_21
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 35
+        width: 7
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 417ede644bb648c90800000000000000
+      internalID: -7168486284838705388
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MonogramAscii_22
+      rect:
+        serializedVersion: 2
+        x: 12
+        y: 35
+        width: 7
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3132fe8f243c5b900800000000000000
+      internalID: 699680009537659667
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MonogramAscii_23
+      rect:
+        serializedVersion: 2
+        x: 18
+        y: 35
+        width: 7
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3f46819e26e437e90800000000000000
+      internalID: -7029188406670760717
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MonogramAscii_24
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 35
+        width: 7
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e78cc929c9d714450800000000000000
+      internalID: 6071271884100257918
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MonogramAscii_25
+      rect:
+        serializedVersion: 2
+        x: 30
+        y: 35
+        width: 7
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5731a91cba135df10800000000000000
+      internalID: 2293794198972404597
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MonogramAscii_26
+      rect:
+        serializedVersion: 2
+        x: 36
+        y: 35
+        width: 7
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9e02bb8ebe512dcf0800000000000000
+      internalID: -229096528076398359
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MonogramAscii_27
+      rect:
+        serializedVersion: 2
+        x: 42
+        y: 35
+        width: 7
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f4d415e1982043570800000000000000
+      internalID: 8445377989168942415
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MonogramAscii_28
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 35
+        width: 7
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6dac2eee01e6236e0800000000000000
+      internalID: -1859302677144220970
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MonogramAscii_29
+      rect:
+        serializedVersion: 2
+        x: 54
+        y: 35
+        width: 7
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5cb74b8fc25e0baf0800000000000000
+      internalID: -382553987012592699
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MonogramAscii_30
+      rect:
+        serializedVersion: 2
+        x: 60
+        y: 35
+        width: 7
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1c04cc4eafb4ae000800000000000000
+      internalID: 65948685502791873
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MonogramAscii_31
+      rect:
+        serializedVersion: 2
+        x: 66
+        y: 35
+        width: 7
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fd79022fcbb235ba0800000000000000
+      internalID: -6101484979640821793
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MonogramAscii_32
+      rect:
+        serializedVersion: 2
+        x: 72
+        y: 35
+        width: 7
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8a693762c5f1aaaa0800000000000000
+      internalID: -6149067860578429272
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MonogramAscii_33
+      rect:
+        serializedVersion: 2
+        x: 78
+        y: 35
+        width: 7
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: adfac4b1164ef0d60800000000000000
+      internalID: 7858750980505776090
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MonogramAscii_34
+      rect:
+        serializedVersion: 2
+        x: 84
+        y: 25
+        width: 13
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2607b2d736632fde0800000000000000
+      internalID: -1300917541426991006
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MonogramAscii_35
+      rect:
+        serializedVersion: 2
+        x: 90
+        y: 35
+        width: 7
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eff5bfbffb690c5f0800000000000000
+      internalID: -738424587578286082
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MonogramAscii_36
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 21
+        width: 7
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: aac4502e1af890560800000000000000
+      internalID: 7280508198065622186
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MonogramAscii_37
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 24
+        width: 7
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 957d736a334623b40800000000000000
+      internalID: 5418503474674915161
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MonogramAscii_38
+      rect:
+        serializedVersion: 2
+        x: 12
+        y: 25
+        width: 7
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 292fad93b53b0bfe0800000000000000
+      internalID: -1175242298349653358
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MonogramAscii_39
+      rect:
+        serializedVersion: 2
+        x: 18
+        y: 25
+        width: 7
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7c9ed374781c2a990800000000000000
+      internalID: -7376120452919465529
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MonogramAscii_40
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 25
+        width: 7
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 10b4eb271b9adc6e0800000000000000
+      internalID: -1815608495161062655
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MonogramAscii_41
+      rect:
+        serializedVersion: 2
+        x: 30
+        y: 25
+        width: 7
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a2ecf5e644e2f5ec0800000000000000
+      internalID: -3576088707664458198
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MonogramAscii_42
+      rect:
+        serializedVersion: 2
+        x: 36
+        y: 25
+        width: 7
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7ce732cd750b7a120800000000000000
+      internalID: 2425100815764258503
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MonogramAscii_43
+      rect:
+        serializedVersion: 2
+        x: 42
+        y: 25
+        width: 7
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 09b427419c9797480800000000000000
+      internalID: -8900949283982652528
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MonogramAscii_44
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 25
+        width: 7
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 84a8c871175b84aa0800000000000000
+      internalID: -6176487391607616952
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MonogramAscii_45
+      rect:
+        serializedVersion: 2
+        x: 54
+        y: 25
+        width: 7
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c866a6c0db0e0a230800000000000000
+      internalID: 3648162800731842188
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MonogramAscii_46
+      rect:
+        serializedVersion: 2
+        x: 60
+        y: 25
+        width: 7
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6821e51bc6ad691f0800000000000000
+      internalID: -1038402503695265146
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MonogramAscii_47
+      rect:
+        serializedVersion: 2
+        x: 68
+        y: 25
+        width: 15
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8500fe9c4c1bfd060800000000000000
+      internalID: 6980493406207148120
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MonogramAscii_48
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 15
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ffb1c29229497c3e0800000000000000
+      internalID: -2033493351257596929
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MonogramAscii_49
+      rect:
+        serializedVersion: 2
+        x: 12
+        y: 15
+        width: 7
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7abbaa087cd0933b0800000000000000
+      internalID: -5532375516739617881
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MonogramAscii_50
+      rect:
+        serializedVersion: 2
+        x: 18
+        y: 15
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e6afe496444e473c0800000000000000
+      internalID: -4362611156539475346
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MonogramAscii_51
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 15
+        width: 7
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ee912ce0d7ec68510800000000000000
+      internalID: 1551154158189550062
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MonogramAscii_52
+      rect:
+        serializedVersion: 2
+        x: 30
+        y: 15
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eeb2d9309d7a41910800000000000000
+      internalID: 1807253900992785390
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MonogramAscii_53
+      rect:
+        serializedVersion: 2
+        x: 36
+        y: 15
+        width: 7
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bcf98981fbc2e3110800000000000000
+      internalID: 1242479746463866827
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MonogramAscii_54
+      rect:
+        serializedVersion: 2
+        x: 42
+        y: 13
+        width: 7
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5fbe49e0eb086dda0800000000000000
+      internalID: -5920403106355155979
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MonogramAscii_55
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 15
+        width: 7
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1ee126532900a2540800000000000000
+      internalID: 4983796565599723233
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MonogramAscii_56
+      rect:
+        serializedVersion: 2
+        x: 54
+        y: 15
+        width: 7
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7c904dfd39b6c5350800000000000000
+      internalID: 6006794285864978887
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MonogramAscii_57
+      rect:
+        serializedVersion: 2
+        x: 60
+        y: 13
+        width: 7
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7c6a8b50c874ee8b0800000000000000
+      internalID: -5121077059556694329
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MonogramAscii_58
+      rect:
+        serializedVersion: 2
+        x: 66
+        y: 15
+        width: 7
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a6707f1bd019cd870800000000000000
+      internalID: 8708995267434055530
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MonogramAscii_59
+      rect:
+        serializedVersion: 2
+        x: 72
+        y: 5
+        width: 7
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8eee3ddb531e17bc0800000000000000
+      internalID: -3786998190707577112
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MonogramAscii_60
+      rect:
+        serializedVersion: 2
+        x: 78
+        y: 15
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: df2905ba8344d4400800000000000000
+      internalID: 309978959541474045
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MonogramAscii_61
+      rect:
+        serializedVersion: 2
+        x: 79
+        y: 5
+        width: 12
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f84b4ea189ad93f00800000000000000
+      internalID: 1097148331062506639
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MonogramAscii_62
+      rect:
+        serializedVersion: 2
+        x: 90
+        y: 15
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 30444faaa219723a0800000000000000
+      internalID: -6690219108992793597
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MonogramAscii_63
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 3
+        width: 7
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ceef7ddaf0fcec900800000000000000
+      internalID: 706729857791819500
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MonogramAscii_64
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 3
+        width: 7
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 94f03ee0abf07d870800000000000000
+      internalID: 8707445696332238665
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MonogramAscii_65
+      rect:
+        serializedVersion: 2
+        x: 12
+        y: 5
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5227ec49ecb8a4c00800000000000000
+      internalID: 885673996107805221
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MonogramAscii_66
+      rect:
+        serializedVersion: 2
+        x: 18
+        y: 5
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c78f0432393ed4ba0800000000000000
+      internalID: -6102971698925995908
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MonogramAscii_67
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 5
+        width: 7
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 876f0de13a0697b10800000000000000
+      internalID: 1979719764918990456
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MonogramAscii_68
+      rect:
+        serializedVersion: 2
+        x: 30
+        y: 5
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9f881281181e079a0800000000000000
+      internalID: -6237237539336255239
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MonogramAscii_69
+      rect:
+        serializedVersion: 2
+        x: 36
+        y: 5
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a359cbfec1369e4f0800000000000000
+      internalID: -798998482949204678
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MonogramAscii_70
+      rect:
+        serializedVersion: 2
+        x: 42
+        y: 5
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b91dd802b78e22dc0800000000000000
+      internalID: -3665111531201375845
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MonogramAscii_71
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 5
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: db73fa37711cfeb30800000000000000
+      internalID: 4318882874140866493
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MonogramAscii_72
+      rect:
+        serializedVersion: 2
+        x: 54
+        y: 3
+        width: 7
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 370093a9081332c90800000000000000
+      internalID: -7195853351194918797
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MonogramAscii_73
+      rect:
+        serializedVersion: 2
+        x: 60
+        y: 5
+        width: 12
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b9058dea4c0a5c0d0800000000000000
+      internalID: -3403137176801095525
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      MonogramAscii_0: -1073505760137980797
+      MonogramAscii_1: 8355356122615691606
+      MonogramAscii_10: 7985833663349079431
+      MonogramAscii_11: -1856454583355533996
+      MonogramAscii_12: -3824071626770516906
+      MonogramAscii_13: -6667249805860560881
+      MonogramAscii_14: 3411606600587969266
+      MonogramAscii_15: 1834350305960988690
+      MonogramAscii_16: 5241727668329406629
+      MonogramAscii_17: 707053359414946790
+      MonogramAscii_18: 3408759332962060938
+      MonogramAscii_19: -7531341208485211464
+      MonogramAscii_2: 6256558432844875351
+      MonogramAscii_20: -1267029710763610155
+      MonogramAscii_21: -7168486284838705388
+      MonogramAscii_22: 699680009537659667
+      MonogramAscii_23: -7029188406670760717
+      MonogramAscii_24: 6071271884100257918
+      MonogramAscii_25: 2293794198972404597
+      MonogramAscii_26: -229096528076398359
+      MonogramAscii_27: 8445377989168942415
+      MonogramAscii_28: -1859302677144220970
+      MonogramAscii_29: -382553987012592699
+      MonogramAscii_3: 2211074863914290690
+      MonogramAscii_30: 65948685502791873
+      MonogramAscii_31: -6101484979640821793
+      MonogramAscii_32: -6149067860578429272
+      MonogramAscii_33: 7858750980505776090
+      MonogramAscii_34: -1300917541426991006
+      MonogramAscii_35: -738424587578286082
+      MonogramAscii_36: 7280508198065622186
+      MonogramAscii_37: 5418503474674915161
+      MonogramAscii_38: -1175242298349653358
+      MonogramAscii_39: -7376120452919465529
+      MonogramAscii_4: 5639261111388199593
+      MonogramAscii_40: -1815608495161062655
+      MonogramAscii_41: -3576088707664458198
+      MonogramAscii_42: 2425100815764258503
+      MonogramAscii_43: -8900949283982652528
+      MonogramAscii_44: -6176487391607616952
+      MonogramAscii_45: 3648162800731842188
+      MonogramAscii_46: -1038402503695265146
+      MonogramAscii_47: 6980493406207148120
+      MonogramAscii_48: -2033493351257596929
+      MonogramAscii_49: -5532375516739617881
+      MonogramAscii_5: 6714158402202212623
+      MonogramAscii_50: -4362611156539475346
+      MonogramAscii_51: 1551154158189550062
+      MonogramAscii_52: 1807253900992785390
+      MonogramAscii_53: 1242479746463866827
+      MonogramAscii_54: -5920403106355155979
+      MonogramAscii_55: 4983796565599723233
+      MonogramAscii_56: 6006794285864978887
+      MonogramAscii_57: -5121077059556694329
+      MonogramAscii_58: 8708995267434055530
+      MonogramAscii_59: -3786998190707577112
+      MonogramAscii_6: 7671835374782097412
+      MonogramAscii_60: 309978959541474045
+      MonogramAscii_61: 1097148331062506639
+      MonogramAscii_62: -6690219108992793597
+      MonogramAscii_63: 706729857791819500
+      MonogramAscii_64: 8707445696332238665
+      MonogramAscii_65: 885673996107805221
+      MonogramAscii_66: -6102971698925995908
+      MonogramAscii_67: 1979719764918990456
+      MonogramAscii_68: -6237237539336255239
+      MonogramAscii_69: -798998482949204678
+      MonogramAscii_7: 7962320699030190004
+      MonogramAscii_70: -3665111531201375845
+      MonogramAscii_71: 4318882874140866493
+      MonogramAscii_72: -7195853351194918797
+      MonogramAscii_73: -3403137176801095525
+      MonogramAscii_8: 4712375682098305530
+      MonogramAscii_9: 3558477045110216973
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
