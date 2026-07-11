@@ -6,7 +6,7 @@ A minimal FPS counter for the Universal Render Pipeline (URP), built with an obs
 
 [日本語版 README はこちら](README.ja.md)
 
-<img width="324" height="160" alt="LightweightFpsCounter" src="https://github.com/user-attachments/assets/aa9b98e1-b171-4b80-800f-daebe52344a3" />
+<img width="332" height="162" alt="LightweightFpsCounter" src="https://github.com/user-attachments/assets/19db7233-5a9b-42a8-bd29-27e40de68377" />
 
 `NOW` is the latest sample; `AVG` is a 1-second average.
 
