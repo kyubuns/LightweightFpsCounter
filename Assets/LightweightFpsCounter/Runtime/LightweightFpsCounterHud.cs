@@ -104,6 +104,10 @@ namespace LightweightFpsCounter
         [SerializeField] private int integerDigits = 3;
 
         [Header("Thresholds (0 = disabled)")]
+        [Tooltip("Apply warning color to the NOW column. Disable to avoid false alarms from single-frame spikes.")]
+        [SerializeField] private bool nowCanWarn = true;
+        [Tooltip("Apply error color to the NOW column. Disable to avoid false alarms from single-frame spikes.")]
+        [SerializeField] private bool nowCanError = true;
         [SerializeField] private Color warningColor = Color.yellow;
         [SerializeField] private Color errorColor = Color.red;
         [Tooltip("FPS turns warning/error colored when it drops below these values.")]
@@ -138,6 +142,8 @@ namespace LightweightFpsCounter
         [SerializeField, Min(0)] private int letterSpacing = 1;
         [Tooltip("On-screen line advance, in font pixels.")]
         [SerializeField, Min(1)] private int lineHeight = 10;
+        [Tooltip("Point keeps pixels sharp at integer Text Scale values. Bilinear smooths edges at fractional scales (e.g. 1.5x) with no extra rendering cost.")]
+        [SerializeField] private FilterMode fontFilterMode = FilterMode.Point;
 
         // The number of tracked metrics: FPS + 5 frame times.
         private const int MetricCount = 6;
@@ -173,6 +179,11 @@ namespace LightweightFpsCounter
         private readonly byte[] _fieldSeverity = new byte[MetricCount * 2];
         private readonly float[] _warningThresholds = new float[MetricCount];
         private readonly float[] _errorThresholds = new float[MetricCount];
+        // Frame counting for accurate FPS measurement (counts actual rendered frames).
+        private int _fpsDisplayFrameCount;
+        private float _fpsDisplayElapsedSec;
+        private int _fpsAvgFrameCount;
+
         private int _fieldCount;
         private int _sampleCount;
         private bool _hasAvg;
@@ -240,6 +251,7 @@ namespace LightweightFpsCounter
                 mainTexture = fontTexture,
                 hideFlags = HideFlags.HideAndDontSave
             };
+            fontTexture.filterMode = fontFilterMode;
             _glyphUvs = new Vector2[GlyphCount * 4];
             _staticMesh = CreateMesh(MaxStaticQuads, out _staticVertices, out _staticUvs, out _staticColors);
             _dynamicMesh = CreateMesh(MaxDynamicQuads, out _dynamicVertices, out _dynamicUvs, out _dynamicColors);
@@ -276,12 +288,21 @@ namespace LightweightFpsCounter
 
         private void Update()
         {
+            // Count this frame for accurate FPS measurement.
+            _fpsDisplayFrameCount++;
+            _fpsDisplayElapsedSec += Time.unscaledDeltaTime;
+            _fpsAvgFrameCount++;
+
             SampleFrameTimings();
 
             _avgTimer += Time.unscaledDeltaTime;
             if (_avgTimer >= 1f)
             {
-                for (var i = 0; i < MetricCount; i++)
+                // FPS AVG: actual frames rendered divided by elapsed time.
+                _avg[0] = _fpsAvgFrameCount / _avgTimer;
+                _fpsAvgFrameCount = 0;
+
+                for (var i = 1; i < MetricCount; i++)
                 {
                     _avg[i] = _sum[i] / _sampleCount;
                     _sum[i] = 0.0;
@@ -308,6 +329,12 @@ namespace LightweightFpsCounter
             _displayTimer += Time.unscaledDeltaTime * 1000f;
             if (_displayTimer >= updateIntervalMs)
             {
+                // FPS NOW: actual frames rendered over this display window.
+                _latest[0] = _fpsDisplayElapsedSec > 0f ? _fpsDisplayFrameCount / _fpsDisplayElapsedSec : 0f;
+                LatestFps = _latest[0];
+                _fpsDisplayFrameCount = 0;
+                _fpsDisplayElapsedSec = 0f;
+
                 _displayTimer = 0f;
                 refresh = true;
             }
@@ -357,21 +384,20 @@ namespace LightweightFpsCounter
                 cpuTotal = cpuMain = cpuWait = cpuRender = gpu = 0.0;
             }
 
-            _latest[0] = cpuTotal > 0.0 ? 1000.0 / cpuTotal : 0.0;
+            // _latest[0] (FPS) is computed in Update() via frame counting; not set here.
             _latest[1] = cpuTotal;
             _latest[2] = cpuMain;
             _latest[3] = cpuWait;
             _latest[4] = cpuRender;
             _latest[5] = gpu;
 
-            LatestFps = _latest[0];
             LatestCpuFrameTimeMs = _latest[1];
             LatestCpuMainThreadFrameTimeMs = _latest[2];
             LatestCpuPresentWaitTimeMs = _latest[3];
             LatestCpuRenderThreadFrameTimeMs = _latest[4];
             LatestGpuFrameTimeMs = _latest[5];
 
-            for (var i = 0; i < MetricCount; i++) _sum[i] += _latest[i];
+            for (var i = 1; i < MetricCount; i++) _sum[i] += _latest[i];
             _sampleCount++;
         }
 
@@ -690,6 +716,11 @@ namespace LightweightFpsCounter
                 WriteFieldDigits(in field, value);
 
                 var severity = SeverityOf(field.Metric, value);
+                if (!field.IsAverage)
+                {
+                    if (!nowCanWarn && severity == 1) severity = 0;
+                    if (!nowCanError && severity == 2) severity = 0;
+                }
                 if (severity != _fieldSeverity[i])
                 {
                     _fieldSeverity[i] = severity;
