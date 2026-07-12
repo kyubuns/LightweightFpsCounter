@@ -88,8 +88,8 @@ namespace LightweightFpsCounter
         [SerializeField] private string gpuLabel = "GPU";
 
         [Header("Display")]
-        [Tooltip("Display refresh interval in milliseconds.")]
-        [SerializeField, Min(1f)] private float updateIntervalMs = 100f;
+        [Tooltip("Number of completed frame timings averaged into each NOW update.")]
+        [SerializeField, Min(1)] private int framesPerUpdate = 4;
         [Tooltip("Scale factor for the text. Integer values keep pixels crisp.")]
         [SerializeField, Min(0.25f)] private float textScale = 2f;
         [SerializeField] private ScreenCorner anchor = ScreenCorner.TopLeft;
@@ -173,7 +173,8 @@ namespace LightweightFpsCounter
         private readonly double[] _latest = new double[MetricCount];
         private readonly double[] _sum = new double[MetricCount];
         private readonly double[] _avg = new double[MetricCount];
-        private readonly FrameTiming[] _frameTimings = new FrameTiming[1];
+        private FrameTiming[] _frameTimings;
+        private readonly double[] _pendingTimingSum = new double[MetricCount];
         private readonly ValueField[] _fields = new ValueField[MetricCount * 2];
         private readonly byte[] _fieldSeverity = new byte[MetricCount * 2];
         private readonly float[] _warningThresholds = new float[MetricCount];
@@ -182,12 +183,15 @@ namespace LightweightFpsCounter
         private int _fpsDisplayFrameCount;
         private float _fpsDisplayElapsedSec;
         private int _fpsAvgFrameCount;
+        private int _pendingTimingCount;
+        private int _framesUntilTimingRead;
+        private ulong _lastFrameTimingTimestamp;
+        private bool _timingTimestampsAvailable = true;
 
         private int _fieldCount;
         private int _sampleCount;
         private bool _hasAvg;
         private float _avgTimer;
-        private float _displayTimer;
         private bool _layoutDirty = true;
         private Coroutine _endOfFrameLoop;
 
@@ -252,6 +256,8 @@ namespace LightweightFpsCounter
             };
             fontTexture.filterMode = fontFilterMode;
             _glyphUvs = new Vector2[GlyphCount * 4];
+            _frameTimings = new FrameTiming[Math.Max(framesPerUpdate, 1)];
+            _framesUntilTimingRead = _frameTimings.Length;
             _staticMesh = CreateMesh(MaxStaticQuads, out _staticVertices, out _staticUvs, out _staticColors);
             _dynamicMesh = CreateMesh(MaxDynamicQuads, out _dynamicVertices, out _dynamicUvs, out _dynamicColors);
             _prevStaticQuadCount = 0;
@@ -294,7 +300,7 @@ namespace LightweightFpsCounter
             _fpsDisplayElapsedSec += deltaTime;
             _fpsAvgFrameCount++;
 
-            SampleFrameTimings();
+            var refresh = SampleFrameTimings() || _layoutDirty;
 
             _avgTimer += deltaTime;
             if (_avgTimer >= 1f)
@@ -305,7 +311,7 @@ namespace LightweightFpsCounter
 
                 for (var i = 1; i < MetricCount; i++)
                 {
-                    _avg[i] = _sum[i] / _sampleCount;
+                    _avg[i] = _sampleCount > 0 ? _sum[i] / _sampleCount : 0.0;
                     _sum[i] = 0.0;
                 }
                 _sampleCount = 0;
@@ -320,24 +326,10 @@ namespace LightweightFpsCounter
                 AverageGpuFrameTimeMs = _avg[5];
             }
 
-            var refresh = _layoutDirty;
             if (_layoutDirty)
             {
                 _layoutDirty = false;
                 RebuildLayout();
-            }
-
-            _displayTimer += deltaTime * 1000f;
-            if (_displayTimer >= updateIntervalMs)
-            {
-                // FPS NOW: actual frames rendered over this display window.
-                _latest[0] = _fpsDisplayElapsedSec > 0f ? _fpsDisplayFrameCount / _fpsDisplayElapsedSec : 0f;
-                LatestFps = _latest[0];
-                _fpsDisplayFrameCount = 0;
-                _fpsDisplayElapsedSec = 0f;
-
-                _displayTimer = 0f;
-                refresh = true;
             }
 
             if (refresh) UpdateValues();
@@ -358,46 +350,97 @@ namespace LightweightFpsCounter
             }
         }
 
-        private void SampleFrameTimings()
+        private bool SampleFrameTimings()
         {
             FrameTimingManager.CaptureFrameTimings();
 
-            double cpuTotal, cpuMain, cpuWait, cpuRender, gpu;
-            if (FrameTimingManager.GetLatestTimings(1, _frameTimings) >= 1)
+            var requestedFrames = Math.Max(framesPerUpdate, 1);
+            if (_frameTimings == null || _frameTimings.Length != requestedFrames)
             {
-                ref readonly var t = ref _frameTimings[0];
-                cpuTotal = t.cpuFrameTime;
-                cpuMain = t.cpuMainThreadFrameTime;
-                cpuWait = t.cpuMainThreadPresentWaitTime;
-                cpuRender = t.cpuRenderThreadFrameTime;
-                gpu = t.gpuFrameTime;
-            }
-            else
-            {
-                cpuTotal = cpuMain = cpuWait = cpuRender = gpu = 0.0;
+                _frameTimings = new FrameTiming[requestedFrames];
+                ResetPendingTimings();
+                _framesUntilTimingRead = requestedFrames;
             }
 
-            // _latest[0] (FPS) is computed in Update() via frame counting; not set here.
-            _latest[1] = cpuTotal;
-            _latest[2] = cpuMain;
-            _latest[3] = cpuWait;
-            _latest[4] = cpuRender;
-            _latest[5] = gpu;
+            if (--_framesUntilTimingRead > 0) return false;
 
+            var timingCount = (int)FrameTimingManager.GetLatestTimings((uint)requestedFrames, _frameTimings);
+            if (timingCount == 0) return false;
+
+            if (_timingTimestampsAvailable && FrameTimingTimestamp(in _frameTimings[0]) == 0)
+            {
+                _timingTimestampsAvailable = false;
+                ResetPendingTimings();
+            }
+
+            // GetLatestTimings returns newest first. Accumulate unseen samples in
+            // chronological order until a complete display batch is available.
+            for (var i = timingCount - 1; i >= 0 && _pendingTimingCount < requestedFrames; i--)
+            {
+                ref readonly var timing = ref _frameTimings[i];
+                if (_timingTimestampsAvailable)
+                {
+                    var timestamp = FrameTimingTimestamp(in timing);
+                    if (timestamp <= _lastFrameTimingTimestamp) continue;
+                    _lastFrameTimingTimestamp = timestamp;
+                }
+
+                AccumulateFrameTiming(in timing);
+            }
+
+            if (_pendingTimingCount < requestedFrames) return false;
+
+            _latest[0] = _fpsDisplayElapsedSec > 0f ? _fpsDisplayFrameCount / _fpsDisplayElapsedSec : 0f;
+            for (var i = 1; i < MetricCount; i++) _latest[i] = _pendingTimingSum[i] / _pendingTimingCount;
+
+            LatestFps = _latest[0];
             LatestCpuFrameTimeMs = _latest[1];
             LatestCpuMainThreadFrameTimeMs = _latest[2];
             LatestCpuPresentWaitTimeMs = _latest[3];
             LatestCpuRenderThreadFrameTimeMs = _latest[4];
             LatestGpuFrameTimeMs = _latest[5];
 
-            for (var i = 1; i < MetricCount; i++) _sum[i] += _latest[i];
+            _fpsDisplayFrameCount = 0;
+            _fpsDisplayElapsedSec = 0f;
+            ResetPendingTimings();
+            _framesUntilTimingRead = requestedFrames;
+            return true;
+        }
+
+        private static ulong FrameTimingTimestamp(in FrameTiming timing)
+        {
+            if (timing.frameStartTimestamp != 0) return timing.frameStartTimestamp;
+            if (timing.firstSubmitTimestamp != 0) return timing.firstSubmitTimestamp;
+            if (timing.cpuTimePresentCalled != 0) return timing.cpuTimePresentCalled;
+            return timing.cpuTimeFrameComplete;
+        }
+
+        private void AccumulateFrameTiming(in FrameTiming timing)
+        {
+            _pendingTimingSum[1] += timing.cpuFrameTime;
+            _pendingTimingSum[2] += timing.cpuMainThreadFrameTime;
+            _pendingTimingSum[3] += timing.cpuMainThreadPresentWaitTime;
+            _pendingTimingSum[4] += timing.cpuRenderThreadFrameTime;
+            _pendingTimingSum[5] += timing.gpuFrameTime;
+
+            _sum[1] += timing.cpuFrameTime;
+            _sum[2] += timing.cpuMainThreadFrameTime;
+            _sum[3] += timing.cpuMainThreadPresentWaitTime;
+            _sum[4] += timing.cpuRenderThreadFrameTime;
+            _sum[5] += timing.gpuFrameTime;
+            _pendingTimingCount++;
             _sampleCount++;
+        }
+
+        private void ResetPendingTimings()
+        {
+            for (var i = 1; i < MetricCount; i++) _pendingTimingSum[i] = 0.0;
+            _pendingTimingCount = 0;
         }
 
         private double AvgOf(int metric)
         {
-            if (_hasAvg) return _avg[metric];
-            return _sampleCount > 0 ? _sum[metric] / _sampleCount : _latest[metric];
+            return _hasAvg ? _avg[metric] : 0.0;
         }
 
         // The shader resolves the final position as:

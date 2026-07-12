@@ -57,7 +57,7 @@ MonoBehaviour:
   cpuPresentWaitLabel: ' Wait'
   cpuRenderThreadLabel: ' Render'
   gpuLabel: GPU
-  updateIntervalMs: 100
+  framesPerUpdate: 4
   textScale: 2
   anchor: 0
   screenMargin: {x: 8, y: 8}

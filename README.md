@@ -15,7 +15,7 @@ A minimal FPS counter for the Universal Render Pipeline (URP), built with an obs
 - Shows FPS plus CPU total / main thread / present wait / render thread / GPU frame times, measured by `FrameTimingManager`.
 - Each metric can be shown or hidden, and every label is freely editable.
 - Values can change to warning/error colors, e.g. when FPS drops below or a frame time rises above your thresholds.
-- Refresh interval, text scale, screen-corner anchor, margin and colors are all adjustable.
+- Frames averaged into each NOW update, text scale, screen-corner anchor, margin and colors are all adjustable.
 - The bitmap font can be replaced with your own atlas of any glyph / cell dimensions.
 - Metrics are also readable from code via static properties such as `LightweightFpsCounterHud.LatestFps`.
 - Zero GC allocations at runtime.
@@ -39,6 +39,7 @@ Define `FPS_COUNTER_ENABLE_IN_RELEASE` if you intentionally want the counter in 
 ## How it stays fast
 
 - A static mesh (header, labels, `ms`) is rebuilt only when settings change; a dynamic mesh holds fixed-width digit slots.
+- Frame timings are fetched in configurable batches and NOW is updated with their average.
 - A refresh rewrites only the dynamic mesh's UVs and uploads them with validation-skipping `MeshUpdateFlags`.
 - Vertex colors are re-uploaded only when a value crosses a threshold.
 - Drawing is just two `DrawMeshNow` calls at the end of the frame, with no pipeline hooks, no culling and no sorting.
