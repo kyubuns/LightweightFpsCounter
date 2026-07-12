@@ -449,8 +449,8 @@ namespace LightweightFpsCounter
             FillColors(_dynamicColors, text);
             Color32 background = backgroundColor;
             _staticColors[0] = _staticColors[1] = _staticColors[2] = _staticColors[3] = background;
-            _staticMesh.colors32 = _staticColors;
-            _dynamicMesh.colors32 = _dynamicColors;
+            _staticMesh.SetColors(_staticColors, 0, _staticQuadCursor * 4, FastUpload);
+            _dynamicMesh.SetColors(_dynamicColors, 0, _dynamicQuadCursor * 4, FastUpload);
         }
 
         private static void FillColors(Color32[] colors, Color32 text)
@@ -573,13 +573,33 @@ namespace LightweightFpsCounter
             _prevStaticQuadCount = _staticQuadCursor;
             _prevDynamicQuadCount = _dynamicQuadCursor;
 
-            _staticMesh.vertices = _staticVertices;
-            _staticMesh.uv = _staticUvs;
-            _dynamicMesh.vertices = _dynamicVertices;
-            _dynamicMesh.uv = _dynamicUvs;
+            // Keep the preallocated index buffers, but draw only the quads used
+            // by the current layout. Unused capacity must not reach the GPU as
+            // degenerate triangles.
+            SetActiveQuadCount(_staticMesh, _staticQuadCursor);
+            SetActiveQuadCount(_dynamicMesh, _dynamicQuadCursor);
+
+            var staticVertexCount = _staticQuadCursor * 4;
+            var dynamicVertexCount = _dynamicQuadCursor * 4;
+            _staticMesh.SetVertices(_staticVertices, 0, staticVertexCount, FastUpload);
+            _staticMesh.SetUVs(0, _staticUvs, 0, staticVertexCount, FastUpload);
+            _dynamicMesh.SetVertices(_dynamicVertices, 0, dynamicVertexCount, FastUpload);
+            _dynamicMesh.SetUVs(0, _dynamicUvs, 0, dynamicVertexCount, FastUpload);
 
             ApplyColors();
             ApplyAnchor();
+        }
+
+        private static void SetActiveQuadCount(Mesh mesh, int quadCount)
+        {
+            var vertexCount = quadCount * 4;
+            var subMesh = new SubMeshDescriptor(0, quadCount * 6, MeshTopology.Triangles)
+            {
+                bounds = mesh.bounds,
+                firstVertex = 0,
+                vertexCount = vertexCount,
+            };
+            mesh.SetSubMesh(0, subMesh, FastUpload);
         }
 
         // The background panel fills the text block plus padding. Negative UVs
@@ -728,8 +748,9 @@ namespace LightweightFpsCounter
                     colorsDirty = true;
                 }
             }
-            _dynamicMesh.SetUVs(0, _dynamicUvs, 0, _dynamicUvs.Length, FastUpload);
-            if (colorsDirty) _dynamicMesh.SetColors(_dynamicColors, 0, _dynamicColors.Length, FastUpload);
+            var activeVertexCount = _dynamicQuadCursor * 4;
+            _dynamicMesh.SetUVs(0, _dynamicUvs, 0, activeVertexCount, FastUpload);
+            if (colorsDirty) _dynamicMesh.SetColors(_dynamicColors, 0, activeVertexCount, FastUpload);
         }
 
         // 0 = normal, 1 = warning, 2 = error. FPS triggers below its thresholds,
