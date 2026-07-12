@@ -89,7 +89,7 @@ namespace LightweightFpsCounter
 
         [Header("Display")]
         [Tooltip("Number of completed frame timings averaged into each NOW update.")]
-        [SerializeField, Min(1)] private int framesPerUpdate = 4;
+        [SerializeField, Min(1)] private int framesPerUpdate = 6;
         [Tooltip("Scale factor for the text. Integer values keep pixels crisp.")]
         [SerializeField, Min(0.25f)] private float textScale = 2f;
         [SerializeField] private ScreenCorner anchor = ScreenCorner.TopLeft;
@@ -142,8 +142,6 @@ namespace LightweightFpsCounter
         [SerializeField, Min(0)] private int letterSpacing = 1;
         [Tooltip("On-screen line advance, in font pixels.")]
         [SerializeField, Min(1)] private int lineHeight = 10;
-        [Tooltip("Point keeps pixels sharp at integer Text Scale values. Bilinear smooths edges at fractional scales (e.g. 1.5x) with no extra rendering cost.")]
-        [SerializeField] private FilterMode fontFilterMode = FilterMode.Point;
 
         // The number of tracked metrics: FPS + 5 frame times.
         private const int MetricCount = 6;
@@ -254,7 +252,6 @@ namespace LightweightFpsCounter
                 mainTexture = fontTexture,
                 hideFlags = HideFlags.HideAndDontSave
             };
-            fontTexture.filterMode = fontFilterMode;
             _glyphUvs = new Vector2[GlyphCount * 4];
             _frameTimings = new FrameTiming[Math.Max(framesPerUpdate, 1)];
             _framesUntilTimingRead = _frameTimings.Length;

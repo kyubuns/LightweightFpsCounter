@@ -44,6 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e70f7158acd03409195cc6f2d79af13a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: LightweightFpsCounter::LightweightFpsCounter.LightweightFpsCounterHud
+  startDisabled: 0
   showCpuTotalFrameTime: 1
   showCpuMainThreadFrameTime: 1
   showCpuMainThreadPresentWaitTime: 1
@@ -57,7 +58,7 @@ MonoBehaviour:
   cpuPresentWaitLabel: ' Wait'
   cpuRenderThreadLabel: ' Render'
   gpuLabel: GPU
-  framesPerUpdate: 4
+  framesPerUpdate: 6
   textScale: 2
   anchor: 0
   screenMargin: {x: 8, y: 8}
@@ -65,6 +66,8 @@ MonoBehaviour:
   backgroundColor: {r: 0, g: 0, b: 0, a: 0.5}
   backgroundPadding: 6
   integerDigits: 3
+  nowCanWarn: 1
+  nowCanError: 1
   warningColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
   errorColor: {r: 1, g: 0, b: 0, a: 1}
   fpsWarningBelow: 30
@@ -87,3 +90,4 @@ MonoBehaviour:
   atlasColumns: 16
   letterSpacing: 1
   lineHeight: 10
+  fontFilterMode: 0
