@@ -23,8 +23,6 @@ Shader "LightweightFpsCounter/Overlay"
             sampler2D _MainTex;
             // xy: normalized anchor (0 = left/bottom, 1 = right/top), zw: pixel offset.
             float4 _AnchorParams;
-            // xy: screen size in pixels, z: Y flip. Set from C# before every draw.
-            float4 _ScreenSizeFlip;
 
             struct appdata
             {
@@ -44,9 +42,9 @@ Shader "LightweightFpsCounter/Overlay"
             {
                 v2f o;
                 // Vertex positions are authored in pixels; map them straight to clip space.
-                float2 pixel = v.vertex.xy + _AnchorParams.xy * _ScreenSizeFlip.xy + _AnchorParams.zw;
-                float2 ndc = pixel / _ScreenSizeFlip.xy * 2.0 - 1.0;
-                o.pos = float4(ndc.x, ndc.y * _ScreenSizeFlip.z, UNITY_NEAR_CLIP_VALUE, 1.0);
+                float2 pixel = v.vertex.xy + _AnchorParams.xy * _ScreenParams.xy + _AnchorParams.zw;
+                float2 ndc = pixel / _ScreenParams.xy * 2.0 - 1.0;
+                o.pos = float4(ndc.x, ndc.y * _ProjectionParams.x, UNITY_NEAR_CLIP_VALUE, 1.0);
                 o.uv = v.uv;
                 o.color = v.color;
                 return o;

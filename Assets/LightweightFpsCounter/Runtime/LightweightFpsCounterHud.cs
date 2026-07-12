@@ -168,7 +168,6 @@ namespace LightweightFpsCounter
             | MeshUpdateFlags.DontResetBoneBounds;
 
         private static readonly int AnchorParamsId = Shader.PropertyToID("_AnchorParams");
-        private static readonly int ScreenSizeFlipId = Shader.PropertyToID("_ScreenSizeFlip");
         private static readonly WaitForEndOfFrame EndOfFrame = new WaitForEndOfFrame();
 
         private readonly double[] _latest = new double[MetricCount];
@@ -351,18 +350,10 @@ namespace LightweightFpsCounter
                 yield return EndOfFrame;
                 if (_material == null || _staticQuadCursor == 0) continue;
 
-                _material.SetVector(ScreenSizeFlipId, new Vector4(Screen.width, Screen.height, BackbufferYFlip(), 0f));
                 _material.SetPass(0);
                 Graphics.DrawMeshNow(_staticMesh, Matrix4x4.identity);
                 Graphics.DrawMeshNow(_dynamicMesh, Matrix4x4.identity);
             }
-        }
-
-        // Asks Unity whether the current back buffer expects a flipped Y axis.
-        private static float BackbufferYFlip()
-        {
-            var proj = GL.GetGPUProjectionMatrix(Matrix4x4.Ortho(0f, 1f, 0f, 1f, -1f, 1f), false);
-            return proj.m11 > 0f ? 1f : -1f;
         }
 
         private void SampleFrameTimings()
