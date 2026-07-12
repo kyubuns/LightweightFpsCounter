@@ -750,6 +750,11 @@ namespace LightweightFpsCounter
         // frame times above theirs. A threshold of 0 is disabled.
         private byte SeverityOf(int metric, double value)
         {
+            // Zero means that no usable sample has been received yet (or that
+            // this timing is unavailable on the current platform). It is not a
+            // performance failure and must keep the normal text color.
+            if (value <= 0.0) return 0;
+
             var warning = _warningThresholds[metric];
             var error = _errorThresholds[metric];
             if (metric == 0)
