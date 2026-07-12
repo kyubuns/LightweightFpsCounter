@@ -287,14 +287,16 @@ namespace LightweightFpsCounter
 
         private void Update()
         {
+            var deltaTime = Time.unscaledDeltaTime;
+
             // Count this frame for accurate FPS measurement.
             _fpsDisplayFrameCount++;
-            _fpsDisplayElapsedSec += Time.unscaledDeltaTime;
+            _fpsDisplayElapsedSec += deltaTime;
             _fpsAvgFrameCount++;
 
             SampleFrameTimings();
 
-            _avgTimer += Time.unscaledDeltaTime;
+            _avgTimer += deltaTime;
             if (_avgTimer >= 1f)
             {
                 // FPS AVG: actual frames rendered divided by elapsed time.
@@ -325,7 +327,7 @@ namespace LightweightFpsCounter
                 RebuildLayout();
             }
 
-            _displayTimer += Time.unscaledDeltaTime * 1000f;
+            _displayTimer += deltaTime * 1000f;
             if (_displayTimer >= updateIntervalMs)
             {
                 // FPS NOW: actual frames rendered over this display window.
