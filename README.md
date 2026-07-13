@@ -38,11 +38,12 @@ Define `FPS_COUNTER_ENABLE_IN_RELEASE` if you intentionally want the counter in 
 
 ## How it stays fast
 
-- A static mesh (header, labels, `ms`) is rebuilt only when settings change; a dynamic mesh holds fixed-width digit slots.
+- Within one mesh, the static header, labels, and `ms` region is rebuilt only when settings change; digits occupy fixed-width slots.
 - Frame timings are fetched in configurable batches and NOW is updated with their average.
-- A refresh rewrites only the dynamic mesh's UVs and uploads them with validation-skipping `MeshUpdateFlags`.
+- NOW and AVG digit slots occupy separate contiguous ranges. Regular refreshes rewrite and partially upload only the NOW UV range with validation-skipping `MeshUpdateFlags`.
 - Vertex colors are re-uploaded only when a value crosses a threshold.
-- Drawing is just two `DrawMeshNow` calls at the end of the frame, with no pipeline hooks, no culling and no sorting.
+- Static text and dynamic digits share one mesh with separate vertex-attribute streams. Refreshes upload only the dynamic UV range, and drawing is one `DrawMeshNow` call at the end of the frame.
+- Indices are 16-bit, with no pipeline hooks, culling, or sorting.
 - The vertex shader maps pixel coordinates straight to clip space, so anchoring costs nothing on the CPU.
 
 ## Font

@@ -194,8 +194,7 @@ namespace LightweightFpsCounter
         private Coroutine _endOfFrameLoop;
 
         private Material _material;
-        private Mesh _staticMesh;
-        private Mesh _dynamicMesh;
+        private Mesh _mesh;
         private Vector3[] _staticVertices;
         private Vector2[] _staticUvs;
         private Color32[] _staticColors;
@@ -205,6 +204,9 @@ namespace LightweightFpsCounter
         private Vector2[] _glyphUvs;
         private int _staticQuadCursor;
         private int _dynamicQuadCursor;
+        private int _nowQuadCursor;
+        private int _averageQuadCursor;
+        private int _averageFirstQuad;
         private int _prevStaticQuadCount;
         private int _prevDynamicQuadCount;
         private int _penX;
@@ -255,8 +257,13 @@ namespace LightweightFpsCounter
             _glyphUvs = new Vector2[GlyphCount * 4];
             _frameTimings = new FrameTiming[Math.Max(framesPerUpdate, 1)];
             _framesUntilTimingRead = _frameTimings.Length;
-            _staticMesh = CreateMesh(MaxStaticQuads, out _staticVertices, out _staticUvs, out _staticColors);
-            _dynamicMesh = CreateMesh(MaxDynamicQuads, out _dynamicVertices, out _dynamicUvs, out _dynamicColors);
+            _staticVertices = new Vector3[MaxStaticQuads * 4];
+            _staticUvs = new Vector2[MaxStaticQuads * 4];
+            _staticColors = new Color32[MaxStaticQuads * 4];
+            _dynamicVertices = new Vector3[MaxDynamicQuads * 4];
+            _dynamicUvs = new Vector2[MaxDynamicQuads * 4];
+            _dynamicColors = new Color32[MaxDynamicQuads * 4];
+            _mesh = CreateMesh(MaxStaticQuads + MaxDynamicQuads);
             _prevStaticQuadCount = 0;
             _prevDynamicQuadCount = 0;
             _layoutDirty = true;
@@ -275,11 +282,9 @@ namespace LightweightFpsCounter
                 StopCoroutine(_endOfFrameLoop);
                 _endOfFrameLoop = null;
             }
-            if (_staticMesh != null) DestroyImmediate(_staticMesh);
-            if (_dynamicMesh != null) DestroyImmediate(_dynamicMesh);
+            if (_mesh != null) DestroyImmediate(_mesh);
             if (_material != null) DestroyImmediate(_material);
-            _staticMesh = null;
-            _dynamicMesh = null;
+            _mesh = null;
             _material = null;
         }
 
@@ -297,7 +302,8 @@ namespace LightweightFpsCounter
             _fpsDisplayElapsedSec += deltaTime;
             _fpsAvgFrameCount++;
 
-            var refresh = SampleFrameTimings() || _layoutDirty;
+            var updateNow = SampleFrameTimings();
+            var updateAverage = false;
 
             _avgTimer += deltaTime;
             if (_avgTimer >= 1f)
@@ -321,15 +327,17 @@ namespace LightweightFpsCounter
                 AverageCpuPresentWaitTimeMs = _avg[3];
                 AverageCpuRenderThreadFrameTimeMs = _avg[4];
                 AverageGpuFrameTimeMs = _avg[5];
+                updateAverage = true;
             }
 
             if (_layoutDirty)
             {
                 _layoutDirty = false;
                 RebuildLayout();
+                updateNow = updateAverage = true;
             }
 
-            if (refresh) UpdateValues();
+            if (updateNow || updateAverage) UpdateValues(updateNow, updateAverage);
         }
 
         // Runs after every camera and after Screen Space - Overlay UI, drawing
@@ -342,8 +350,7 @@ namespace LightweightFpsCounter
                 if (_material == null || _staticQuadCursor == 0) continue;
 
                 _material.SetPass(0);
-                Graphics.DrawMeshNow(_staticMesh, Matrix4x4.identity);
-                Graphics.DrawMeshNow(_dynamicMesh, Matrix4x4.identity);
+                Graphics.DrawMeshNow(_mesh, Matrix4x4.identity);
             }
         }
 
@@ -482,8 +489,9 @@ namespace LightweightFpsCounter
             FillColors(_dynamicColors, text);
             Color32 background = backgroundColor;
             _staticColors[0] = _staticColors[1] = _staticColors[2] = _staticColors[3] = background;
-            _staticMesh.SetColors(_staticColors, 0, _staticQuadCursor * 4, FastUpload);
-            _dynamicMesh.SetColors(_dynamicColors, 0, _dynamicQuadCursor * 4, FastUpload);
+            var staticVertexCount = _staticQuadCursor * 4;
+            _mesh.SetVertexBufferData(_staticColors, 0, 0, staticVertexCount, 2, FastUpload);
+            _mesh.SetVertexBufferData(_dynamicColors, 0, staticVertexCount, _dynamicQuadCursor * 4, 2, FastUpload);
         }
 
         private static void FillColors(Color32[] colors, Color32 text)
@@ -514,45 +522,47 @@ namespace LightweightFpsCounter
             }
         }
 
-        private static Mesh CreateMesh(int maxQuads, out Vector3[] vertices, out Vector2[] uvs, out Color32[] colors)
+        private static Mesh CreateMesh(int maxQuads)
         {
             var vertexCount = maxQuads * 4;
-            vertices = new Vector3[vertexCount];
-            uvs = new Vector2[vertexCount];
-            colors = new Color32[vertexCount];
-
-            var indices = new int[maxQuads * 6];
+            var indices = new ushort[maxQuads * 6];
             for (var q = 0; q < maxQuads; q++)
             {
-                var v = q * 4;
+                var v = (ushort)(q * 4);
                 var i = q * 6;
                 indices[i] = v;
-                indices[i + 1] = v + 1;
-                indices[i + 2] = v + 2;
-                indices[i + 3] = v + 2;
-                indices[i + 4] = v + 1;
-                indices[i + 5] = v + 3;
+                indices[i + 1] = (ushort)(v + 1);
+                indices[i + 2] = (ushort)(v + 2);
+                indices[i + 3] = (ushort)(v + 2);
+                indices[i + 4] = (ushort)(v + 1);
+                indices[i + 5] = (ushort)(v + 3);
             }
 
             var mesh = new Mesh { hideFlags = HideFlags.HideAndDontSave };
             mesh.MarkDynamic();
-            mesh.vertices = vertices;
-            mesh.uv = uvs;
-            mesh.colors32 = colors;
-            mesh.triangles = indices;
+            // Independent streams make UV-only partial uploads possible while a
+            // single mesh keeps the hot render path to one draw call.
+            mesh.SetVertexBufferParams(vertexCount,
+                new VertexAttributeDescriptor(VertexAttribute.Position, VertexAttributeFormat.Float32, 3, 0),
+                new VertexAttributeDescriptor(VertexAttribute.TexCoord0, VertexAttributeFormat.Float32, 2, 1),
+                new VertexAttributeDescriptor(VertexAttribute.Color, VertexAttributeFormat.UNorm8, 4, 2));
+            mesh.SetIndexBufferParams(indices.Length, IndexFormat.UInt16);
+            mesh.SetIndexBufferData(indices, 0, 0, indices.Length, FastUpload);
+            mesh.subMeshCount = 1;
             // A large fixed bounds avoids RecalculateBounds on every rebuild.
             mesh.bounds = new Bounds(Vector3.zero, new Vector3(100000f, 100000f, 100000f));
             return mesh;
         }
 
-        // Layout is rebuilt only when settings change. Header and label text live in
-        // the static mesh; digit slots live in the dynamic mesh at fixed positions,
-        // so a display refresh only rewrites the dynamic mesh's UV array.
+        // Layout is rebuilt only when settings change. Header/labels and digit
+        // slots occupy separate ranges of one mesh; NOW and AVG are contiguous
+        // sub-ranges so ordinary refreshes upload only the NOW UVs.
         private void RebuildLayout()
         {
             // Quad 0 of the static mesh is reserved for the background panel.
             _staticQuadCursor = 1;
             _dynamicQuadCursor = 0;
+            _nowQuadCursor = 0;
             _fieldCount = 0;
             _penX = 0;
             _penY = 0;
@@ -588,6 +598,15 @@ namespace LightweightFpsCounter
             var nowColumn = labelChars + ColumnGapChars;
             var avgColumn = nowColumn + valueChars + ColumnGapChars;
 
+            var rowCount = 1;
+            if (showCpuTotalFrameTime) rowCount++;
+            if (showCpuMainThreadFrameTime) rowCount++;
+            if (showCpuMainThreadPresentWaitTime) rowCount++;
+            if (showCpuRenderThreadFrameTime) rowCount++;
+            if (showGpuFrameTime) rowCount++;
+            _averageFirstQuad = rowCount * valueChars;
+            _averageQuadCursor = _averageFirstQuad;
+
             BuildHeaderLine(nowColumn, avgColumn, valueChars);
             BuildLine(fpsLabel, 0, nowColumn, avgColumn, false);
             if (showCpuTotalFrameTime) BuildLine(cpuTotalLabel, 1, nowColumn, avgColumn, true);
@@ -595,6 +614,7 @@ namespace LightweightFpsCounter
             if (showCpuMainThreadPresentWaitTime) BuildLine(cpuPresentWaitLabel, 3, nowColumn, avgColumn, true);
             if (showCpuRenderThreadFrameTime) BuildLine(cpuRenderThreadLabel, 4, nowColumn, avgColumn, true);
             if (showGpuFrameTime) BuildLine(gpuLabel, 5, nowColumn, avgColumn, true);
+            _dynamicQuadCursor = _averageQuadCursor;
 
             // Last baseline minus one line advance, plus the glyph height.
             _blockHeightPx = (_penY - lineHeight + glyphSize.y) * textScale;
@@ -609,15 +629,14 @@ namespace LightweightFpsCounter
             // Keep the preallocated index buffers, but draw only the quads used
             // by the current layout. Unused capacity must not reach the GPU as
             // degenerate triangles.
-            SetActiveQuadCount(_staticMesh, _staticQuadCursor);
-            SetActiveQuadCount(_dynamicMesh, _dynamicQuadCursor);
+            SetActiveQuadCount(_mesh, _staticQuadCursor + _dynamicQuadCursor);
 
             var staticVertexCount = _staticQuadCursor * 4;
             var dynamicVertexCount = _dynamicQuadCursor * 4;
-            _staticMesh.SetVertices(_staticVertices, 0, staticVertexCount, FastUpload);
-            _staticMesh.SetUVs(0, _staticUvs, 0, staticVertexCount, FastUpload);
-            _dynamicMesh.SetVertices(_dynamicVertices, 0, dynamicVertexCount, FastUpload);
-            _dynamicMesh.SetUVs(0, _dynamicUvs, 0, dynamicVertexCount, FastUpload);
+            _mesh.SetVertexBufferData(_staticVertices, 0, 0, staticVertexCount, 0, FastUpload);
+            _mesh.SetVertexBufferData(_dynamicVertices, 0, staticVertexCount, dynamicVertexCount, 0, FastUpload);
+            _mesh.SetVertexBufferData(_staticUvs, 0, 0, staticVertexCount, 1, FastUpload);
+            _mesh.SetVertexBufferData(_dynamicUvs, 0, staticVertexCount, dynamicVertexCount, 1, FastUpload);
 
             ApplyColors();
             ApplyAnchor();
@@ -691,7 +710,7 @@ namespace LightweightFpsCounter
 
         private void AddValueField(int metric, bool isAverage)
         {
-            var firstQuad = _dynamicQuadCursor;
+            var firstQuad = isAverage ? _averageQuadCursor : _nowQuadCursor;
             _fields[_fieldCount] = new ValueField
             {
                 Metric = metric,
@@ -702,7 +721,15 @@ namespace LightweightFpsCounter
 
             // All slots are dynamic (including the decimal point) so the whole
             // value can change color based on thresholds.
-            for (var i = 0; i < integerDigits + 3; i++) AddDynamicSlot();
+            var slotCount = integerDigits + 3;
+            for (var i = 0; i < slotCount; i++)
+            {
+                var quad = firstQuad + i;
+                if (quad < MaxDynamicQuads) WriteQuadPositions(_dynamicVertices, quad, _penX, _penY);
+                _penX += _advanceX;
+            }
+            if (isAverage) _averageQuadCursor += slotCount;
+            else _nowQuadCursor += slotCount;
             // The decimal point glyph never changes; write its UVs once here.
             SetSlotGlyph(firstQuad + integerDigits, '.');
         }
@@ -719,16 +746,6 @@ namespace LightweightFpsCounter
                 WriteQuadPositions(_staticVertices, _staticQuadCursor, _penX, _penY);
                 WriteQuadUvs(_staticUvs, _staticQuadCursor, c - FirstChar);
                 _staticQuadCursor++;
-            }
-            _penX += _advanceX;
-        }
-
-        private void AddDynamicSlot()
-        {
-            if (_dynamicQuadCursor < MaxDynamicQuads)
-            {
-                WriteQuadPositions(_dynamicVertices, _dynamicQuadCursor, _penX, _penY);
-                _dynamicQuadCursor++;
             }
             _penX += _advanceX;
         }
@@ -757,14 +774,15 @@ namespace LightweightFpsCounter
             uvs[vi + 3] = _glyphUvs[gi + 3];
         }
 
-        // Refresh path: rewrites the dynamic mesh's UV array, and its colors only
-        // when a value crosses a threshold. Zero GC allocations.
-        private void UpdateValues()
+        // Refresh path: rewrites only the changed NOW/AVG UV range, and colors
+        // only when a value crosses a threshold. Zero GC allocations.
+        private void UpdateValues(bool updateNow, bool updateAverage)
         {
             var colorsDirty = false;
             for (var i = 0; i < _fieldCount; i++)
             {
                 ref readonly var field = ref _fields[i];
+                if (field.IsAverage ? !updateAverage : !updateNow) continue;
                 var value = field.IsAverage ? AvgOf(field.Metric) : _latest[field.Metric];
                 WriteFieldDigits(in field, value);
 
@@ -781,9 +799,19 @@ namespace LightweightFpsCounter
                     colorsDirty = true;
                 }
             }
-            var activeVertexCount = _dynamicQuadCursor * 4;
-            _dynamicMesh.SetUVs(0, _dynamicUvs, 0, activeVertexCount, FastUpload);
-            if (colorsDirty) _dynamicMesh.SetColors(_dynamicColors, 0, activeVertexCount, FastUpload);
+            var dynamicVertexStart = _staticQuadCursor * 4;
+            if (updateNow)
+            {
+                var nowVertexCount = _averageFirstQuad * 4;
+                _mesh.SetVertexBufferData(_dynamicUvs, 0, dynamicVertexStart, nowVertexCount, 1, FastUpload);
+            }
+            if (updateAverage)
+            {
+                var averageVertexStart = _averageFirstQuad * 4;
+                var averageVertexCount = (_dynamicQuadCursor - _averageFirstQuad) * 4;
+                _mesh.SetVertexBufferData(_dynamicUvs, averageVertexStart, dynamicVertexStart + averageVertexStart, averageVertexCount, 1, FastUpload);
+            }
+            if (colorsDirty) _mesh.SetVertexBufferData(_dynamicColors, 0, dynamicVertexStart, _dynamicQuadCursor * 4, 2, FastUpload);
         }
 
         // 0 = normal, 1 = warning, 2 = error. FPS triggers below its thresholds,
