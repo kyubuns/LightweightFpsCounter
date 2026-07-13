@@ -195,6 +195,7 @@ namespace LightweightFpsCounter
 
         private Material _material;
         private Mesh _mesh;
+        private CommandBuffer _drawCommands;
         private Vector3[] _staticVertices;
         private Vector2[] _staticUvs;
         private Color32[] _staticColors;
@@ -264,6 +265,7 @@ namespace LightweightFpsCounter
             _dynamicUvs = new Vector2[MaxDynamicQuads * 4];
             _dynamicColors = new Color32[MaxDynamicQuads * 4];
             _mesh = CreateMesh(MaxStaticQuads + MaxDynamicQuads);
+            _drawCommands = new CommandBuffer { name = "LightweightFpsCounter" };
             _prevStaticQuadCount = 0;
             _prevDynamicQuadCount = 0;
             _layoutDirty = true;
@@ -281,6 +283,11 @@ namespace LightweightFpsCounter
             {
                 StopCoroutine(_endOfFrameLoop);
                 _endOfFrameLoop = null;
+            }
+            if (_drawCommands != null)
+            {
+                _drawCommands.Release();
+                _drawCommands = null;
             }
             if (_mesh != null) DestroyImmediate(_mesh);
             if (_material != null) DestroyImmediate(_material);
@@ -349,8 +356,7 @@ namespace LightweightFpsCounter
                 yield return EndOfFrame;
                 if (_material == null || _staticQuadCursor == 0) continue;
 
-                _material.SetPass(0);
-                Graphics.DrawMeshNow(_mesh, Matrix4x4.identity);
+                Graphics.ExecuteCommandBuffer(_drawCommands);
             }
         }
 
@@ -640,6 +646,8 @@ namespace LightweightFpsCounter
 
             ApplyColors();
             ApplyAnchor();
+            _drawCommands.Clear();
+            _drawCommands.DrawMesh(_mesh, Matrix4x4.identity, _material, 0, 0);
         }
 
         private static void SetActiveQuadCount(Mesh mesh, int quadCount)

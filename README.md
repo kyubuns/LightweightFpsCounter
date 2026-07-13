@@ -42,8 +42,8 @@ Define `FPS_COUNTER_ENABLE_IN_RELEASE` if you intentionally want the counter in 
 - Frame timings are fetched in configurable batches and NOW is updated with their average.
 - NOW and AVG digit slots occupy separate contiguous ranges. Regular refreshes rewrite and partially upload only the NOW UV range with validation-skipping `MeshUpdateFlags`.
 - Vertex colors are re-uploaded only when a value crosses a threshold.
-- Static text and dynamic digits share one mesh with separate vertex-attribute streams. Refreshes upload only the dynamic UV range, and drawing is one `DrawMeshNow` call at the end of the frame.
-- Indices are 16-bit, with no pipeline hooks, culling, or sorting.
+- Static text and dynamic digits share one mesh with separate vertex-attribute streams. Refreshes upload only the dynamic UV range.
+- The draw is pre-recorded in a command buffer, leaving one `ExecuteCommandBuffer` call at the end of the frame. Indices are 16-bit, with no pipeline hooks, culling, or sorting.
 - The vertex shader maps pixel coordinates straight to clip space, so anchoring costs nothing on the CPU.
 
 ## Font
