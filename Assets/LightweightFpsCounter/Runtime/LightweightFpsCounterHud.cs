@@ -24,7 +24,7 @@ namespace LightweightFpsCounter
 
         // Latest / per-second averaged values, readable from any code.
         // Always compiled so callers build in every configuration; they stay 0
-        // when the counter is stripped.
+        // when the runtime implementation is excluded.
         public static double LatestFps { get; private set; }
         public static double AverageFps { get; private set; }
         public static double LatestCpuFrameTimeMs { get; private set; }
@@ -41,29 +41,9 @@ namespace LightweightFpsCounter
         // The active instance. There is at most one: it persists across scene
         // loads, and any second instance destroys itself with a warning.
         // It stays registered while disabled, so a debug command can show the
-        // HUD with Instance.enabled = true. Null when stripped from the build.
+        // HUD with Instance.enabled = true. Null when the runtime implementation
+        // is excluded from the build.
         public static LightweightFpsCounterHud Instance { get; private set; }
-
-#if FPS_COUNTER_ACTIVE
-        private struct ValueField
-        {
-            public int Metric;
-            public bool IsAverage;
-            public int FirstQuad;
-        }
-
-        // Supports disabled Domain Reload (Enter Play Mode Options).
-        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
-        private static void ResetStatics()
-        {
-            Instance = null;
-            LatestFps = AverageFps = 0.0;
-            LatestCpuFrameTimeMs = AverageCpuFrameTimeMs = 0.0;
-            LatestCpuMainThreadFrameTimeMs = AverageCpuMainThreadFrameTimeMs = 0.0;
-            LatestCpuPresentWaitTimeMs = AverageCpuPresentWaitTimeMs = 0.0;
-            LatestCpuRenderThreadFrameTimeMs = AverageCpuRenderThreadFrameTimeMs = 0.0;
-            LatestGpuFrameTimeMs = AverageGpuFrameTimeMs = 0.0;
-        }
 
         [Header("Startup")]
         [Tooltip("Start disabled after registering the singleton and DontDestroyOnLoad. Turn the HUD on later from code: LightweightFpsCounterHud.Instance.enabled = true;")]
@@ -142,6 +122,27 @@ namespace LightweightFpsCounter
         [SerializeField, Min(0)] private int letterSpacing = 1;
         [Tooltip("On-screen line advance, in font pixels.")]
         [SerializeField, Min(1)] private int lineHeight = 10;
+
+#if FPS_COUNTER_ACTIVE
+        private struct ValueField
+        {
+            public int Metric;
+            public bool IsAverage;
+            public int FirstQuad;
+        }
+
+        // Supports disabled Domain Reload (Enter Play Mode Options).
+        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
+        private static void ResetStatics()
+        {
+            Instance = null;
+            LatestFps = AverageFps = 0.0;
+            LatestCpuFrameTimeMs = AverageCpuFrameTimeMs = 0.0;
+            LatestCpuMainThreadFrameTimeMs = AverageCpuMainThreadFrameTimeMs = 0.0;
+            LatestCpuPresentWaitTimeMs = AverageCpuPresentWaitTimeMs = 0.0;
+            LatestCpuRenderThreadFrameTimeMs = AverageCpuRenderThreadFrameTimeMs = 0.0;
+            LatestGpuFrameTimeMs = AverageGpuFrameTimeMs = 0.0;
+        }
 
         // The number of tracked metrics: FPS + 5 frame times.
         private const int MetricCount = 6;

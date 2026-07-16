@@ -33,8 +33,12 @@ A minimal FPS counter for the Universal Render Pipeline (URP), built with an obs
 
 ## Release builds
 
-The implementation is compiled only in the editor and Development Builds; non-development builds contain empty stubs and none of the assets.
+The measurement and rendering implementation is compiled only in the editor and Development Builds; non-development builds contain only an inactive component stub.
 Define `FPS_COUNTER_ENABLE_IN_RELEASE` if you intentionally want the counter in release builds.
+
+The component's serialized fields remain present in every build configuration to keep the serialized layout compatible between Addressables content builds and Player builds. Therefore, if a **LightweightFpsCounterHud** prefab is included in a Release build, its referenced assets, including the font texture and overlay shader, are also included even though the counter is inactive.
+
+To keep the counter and its assets completely out of Release builds, exclude the prefab from every build input used by your project, such as Addressables, `Resources`, and Scenes. One option is to put the prefab in a Development-only Addressables Group and disable **Include In Build** for that group in the Release Addressables profile/build settings.
 
 ## How it stays fast
 

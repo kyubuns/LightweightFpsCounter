@@ -33,8 +33,12 @@
 
 ## リリースビルド
 
-実装はエディタとDevelopment Buildでのみコンパイルされ、非Developmentビルドには空のスタブだけが残りアセットも含まれません。
+計測・描画の実装はエディタとDevelopment Buildでのみコンパイルされ、非Developmentビルドには動作しないコンポーネントのスタブだけが残ります。
 リリースビルドでも意図的に使いたい場合は `FPS_COUNTER_ENABLE_IN_RELEASE` を定義してください。
+
+AddressablesのコンテンツビルドとPlayerビルドの間でserialized layoutの互換性を維持するため、コンポーネントのserialized fieldはすべてのビルド構成で保持されます。そのため、Release buildに **LightweightFpsCounterHud** Prefabを収録すると、カウンターが動作しない場合でもフォントテクスチャやoverlay shaderなど、Prefabが参照する関連assetも含まれます。
+
+カウンターと関連assetをReleaseへ一切含めたくない場合は、利用側でPrefabをAddressables、`Resources`、Sceneなど、プロジェクトのすべてのbuild対象から除外してください。たとえばDevelopment専用のAddressables GroupへPrefabを配置し、Release用のAddressables profile/build settingsではそのGroupの **Include In Build** を無効にする方法があります。
 
 ## 速さの理由
 
